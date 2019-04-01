@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <div id="constructer">
+        <h1 class="content">张孝捷 
+            <span class="content_text">是不是傻瓜?</span>
+        </h1>
+        <p class="main">是傻瓜</p>
+    </div>
+
+    <script>
+        const MyDom = {
+            tag: "div",
+            attrs: {
+                id: "constructer"
+            },
+            children: [
+                {
+                    tag:"h1",
+                    attrs: {
+                        class: "content"
+                    },
+                    children:[
+                        "张孝捷",
+                        {
+                            tag:"span",
+                            attrs:{
+                                class:"content_text"
+                            },
+                            children:["张孝捷是不是傻瓜?"]
+                        }
+                    ]
+                },
+                {
+                    tag:"p",
+                    attrs: {
+                        class: "div"
+                    },
+                    chikdren: [
+                        "是傻瓜"
+                    ]
+                }
+            ]
+        }
+    
+    
+    
+    </script>
+</body>
+</html>
