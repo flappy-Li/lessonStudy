@@ -1,6 +1,9 @@
 ## web学习
 ### **oneDay --> jq ->  lesson1**
-### ** ES6**
+### **vue**
+    vue lesson1
+    
+### **ES6**
     ES6 --> 
         1. babel 编译安装
         2. let const var 区别 

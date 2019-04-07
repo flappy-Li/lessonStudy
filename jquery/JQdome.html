@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>修改列表数据</title>
+    <style>
+        .zxjstyle {
+            padding: 20px 30px;
+            background-color:#ddd;
+            
+        }
+        .zxjstyle li {
+            padding: 10px 0;
+            list-style: none;
+            background-color: #fff;
+            display: flex;
+            justify-content: space-evenly;
+        }
+        .zxjstyle span {
+            margin: 0 10px;
+            padding: 10px 20px;
+            width: 50px;
+            text-align: center;
+            box-sizing: content-box;
+        }
+    </style>
+</head>
+<body>
+
+
+    <ul class="zxjstyle"></ul>
+    <button class="changeValue">改变样式</button>
+    <script src="jquery.js"></script>
+    <script>
+        const $ul = $('.zxjstyle'),
+            $button = $('button'),
+            dataList = [
+                 {
+                    name: 'zhang',
+                    age: 18,
+                    profession: '最胖'
+                },
+                {
+                    name: 'zhang',
+                    age: 22,
+                    profession: '最黑'
+                },
+                {
+                    name: 'zhang',
+                    age: 20,
+                    profession: '最丑'
+                },
+                {
+                    name: 'zhang',
+                    age: 88,
+                    profession: '最笨'
+                }
+             ];
+        
+        function getData (dataList) {
+            let str = '';
+            dataList.forEach(item => {
+                str += `<li>
+                        <span>${item.name}</span>
+                        <span>${item.age}</span>
+                        <span>${item.profession}</span>
+                    </li>`
+            })
+            $ul.html(str);
+        }
+        getData(dataList);
+        $button.on('click', () => {
+            dataList[0].profession = '最瘦';
+            dataList[1].profession = '最白';
+            dataList[2].profession = '最美';
+            dataList[3].profession = '最漂亮';
+            getData(dataList);
+        })
+    </script>
+</body>
+</html>
