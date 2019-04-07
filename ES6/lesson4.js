@@ -51,6 +51,6 @@
  *  简单模拟双向数据绑定   
  *     例 => 见 difineProperty.html
  * 
- *  ES6 - proxy & reflect (代理和映射)
+ *  ES6 - proxy & reflect (代理和映射) 
  *          
  */
