@@ -16,5 +16,5 @@
  *          4.返回值可以不用写return，但有时需要配合{}
  *          5.内部的argument, this 由定义时外围最接近一层的非箭头函数的argument和this决定其值 
  *      }   
- *   
+ *      this指向 如果箭头函数在全局下定义，this就指向window；
  */

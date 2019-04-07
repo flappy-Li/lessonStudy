@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>简单模拟 vue双向数据绑定</title>
+</head>
+
+<body>
+    <input type="text" id="oInput">
+    <div id="oDiv"></div>
+    <script>
+        let oInput = document.getElementById('oInput'),
+            oDiv = document.getElementById('oDiv');
+        let obj = {
+            value: 'zxj',
+            sex: 26,
+        }
+        oInput.oninput = function () {
+            obj.value = this.value;
+        }
+
+        function updata() {
+            oDiv.innerText = obj.value;
+        }
+        updata();
+
+        function observer(data) {
+            if (!data || typeof data != 'object') return data;
+            Object.keys(data).forEach(key => {
+                defineProperty(obj, key, obj[key])
+            })
+        }
+        
+        function defineProperty(data, key, val) {
+            
+            // observer(obj); //递归 对象内套对象 
+            Object.defineProperty(data, key, {
+                get() {
+                    return val;
+                },
+                set(newValue) {
+                    if (newValue == val) return;
+                    val = newValue;
+                    updata();
+                }
+            })
+        }
+        observer(obj);
+    </script>
+</body>
+
+</html>
