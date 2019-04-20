@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        #app {
+            border: 1px solid #000;
+            /* height: 100%; */
+            /* width: 500px; */
+            display: inline-block;
+            padding: 20px;
+            cursor: pointer;
+            padding-bottom: 0;
+            font-size: 14px;
+        }
+        .course {
+            display: flex;
+            margin-bottom: 15px;
+        }
+        .img-box {
+            position: relative;
+            margin-right: 20px;
+        }
+        .course-img {
+            width: 140px;
+            height: 80px;
+            vertical-align: bottom;
+        }
+        .course span {
+            box-sizing: border-box;
+            position: absolute;
+            bottom: 0;
+            display: block;
+            width: 100%;
+            line-height: 20px;
+            color: #fff;
+            padding-left: 10px;
+            font-size: 10px;
+            background-color: rgba(0,0,0,.6);
+        }
+        .title {
+            width: 250px;
+            box-sizing: border-box;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+        .free {
+            color:#5fb41b;
+        }
+        .play-back {
+            display: inline-block;
+            padding: 0 3px;
+            font-size: 12px;
+            border: 1px solid #73b3e7;
+            color: #73b3e7;
+        }
+        .price {
+            color: #e85308;
+        }
+        .choose {
+            opacity: .3;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <rank-list :list='courseList' @price='getPrice'></rank-list>
+        合计： {{price}}
+    </div>
+    <script>
+        const rankList = {
+            props:['list'],
+            template: `<ul>
+                        <li class="course" 
+                            v-for="(item,index) in list"
+                            key="item.name"
+                            @click="addToBuy(index, item.price)"   
+                            :class="{course:true, choose:aleadyHasArr[index]}" 
+                            @contextmenu.prevent="removeTotal(index, item.price)"
+                        >
+                            <div class="img-box">
+                                <img  class="course-img" :src="item.poster" alt="">
+                                <span v-if="item.enrollment">{{item.enrollment}}人报名</span>
+                                <span v-if="item.buyNumber">{{item.buyNumber}}人购买</span>
+                            </div>
+                            <div class="content-box" >
+                                <div class="title">{{item.name}}</div>
+                                <div class="free" v-if="item.free">免费</div>
+                                <div class="play-back" v-if="item.playback">回放</div>
+                                <div class="price">￥{{item.price}}</div>
+                            </div>
+                        </li>
+                    </ul> `,
+            data() {
+              return {
+                    totalPriceList:[],
+                    aleadyHasArr:[],
+                    totalPrice:0,
+                }
+            },
+            methods:{
+                addToBuy(index, price){
+                    if(this.aleadyHasArr[index]) return;
+                    this.totalPriceList.push(price);
+                    this.aleadyHasArr[index] = true;
+                    this.$set(this.aleadyHasArr, index, true)
+                    this.totalPrice = this.totalPriceList.reduce((prev,cur) => {
+                        return prev + cur;
+                    })
+                    this.getPriceTotal()
+                },
+                removeTotal(index, price){
+                    if(!this.aleadyHasArr[index]) return;
+                    const totalPriceIndex = this.totalPriceList.findIndex( item => {
+                        return item == price;
+                    })
+                    this.aleadyHasArr.splice(index, 1, false);
+                    this.totalPriceList.splice(totalPriceIndex, 1)
+                    this.getPriceTotal()
+                },
+                getPriceTotal(){
+                    if(this.totalPriceList.length === 0) {
+                        this.totalPrice = 0;
+                    }else {
+                        this.totalPrice = this.totalPriceList.reduce( ( prev, cur ) => {
+                            return prev + cur;
+                        })
+                    }
+                    this.$emit('price', this.totalPrice)
+                }
+            }
+        }
+
+        const vm = new Vue({
+            el: "#app",
+            components: {
+                rankList
+            },
+            data: {
+                price:0,
+                courseList: [
+                    {
+                        name: 'Web前端开发之JavaScript(Js)精英课堂【渡一教育】',
+                        free: true,
+                        playback: false,
+                        price: 0,
+                        buyNumber: 0,
+                        enrollment: 4942,
+                        poster: 'https://10.url.cn/qqcourse_logo_ng/ajNVdqHZLLBsSud06XlZnJACsTWd7OSA5phIFPRTNibFBeuT8jRjy00Jb5ticSEKYUnpUYdBCicH2U/356'
+                    },
+                    {
+                        name: 'Web前端开发之HTML+CSS精英课堂【渡一教育】',
+                        free: true,
+                        playback: false,
+                        price: 0,
+                        buyNumber: 0,
+                        enrollment: 2982,
+                        poster: 'https://10.url.cn/qqcourse_logo_ng/ajNVdqHZLLBDFLdArBwf70PjMrL6bq0OI9LesEsskk1iamJKibriaic0QkBZhINoDuN0DicaojkqyQjk/356'
+                    },
+                    {
+                        name: '淘宝商城项目实战开发【渡一教育】',
+                        free: true,
+                        playback: false,
+                        price: 0,
+                        buyNumber: 0,
+                        enrollment: 1742,
+                        poster: 'https://10.url.cn/qqcourse_logo_ng/ajNVdqHZLLDBpXKL1sgAOKcbSz0Od2abiaqdJibiaDDQWfmrVNBCFrIpbTQKlNyWbPg5Uo1dnT7Znk/356'
+                    },
+                    {
+                        name: '零基础WEB前端入门',
+                        free: false,
+                        playback: true,
+                        price: 9.9,
+                        buyNumber: 2514,
+                        enrollment: 0,
+                        poster: 'https://10.url.cn/qqcourse_logo_ng/ajNVdqHZLLCRlDgtxVbmyclxP9fDUYmnuqAFbN5mYsncrPrVyQbtA3fNfuZ3qicSe1r7Ppt7tICs/356'
+                    },
+                    {
+                        name: 'React顶级企业实战，全流程制作淘票票WebApp【渡一教育】',
+                        free: false,
+                        playback: true,
+                        price: 399,
+                        buyNumber: 670,
+                        enrollment: 0,
+                        poster: 'https://10.url.cn/qqcourse_logo_ng/ajNVdqHZLLB2CyXIxsb8iaAUibBB9mzlkSgKNU7GiciaYxG1SicoLjkiahZ3ia54eZWbtCGDkFyvMo0uKk/356'
+                    },
+                    {
+                        name: '原生JS贪吃蛇游戏实战开发【渡一教育】',
+                        free: true,
+                        playback: false,
+                        price: 0,
+                        buyNumber: 0,
+                        enrollment: 1123,
+                        poster: 'https://10.url.cn/qqcourse_logo_ng/ajNVdqHZLLCfsOGnxjhUXFA6SHMOu0fMUicuucRlIVNo9zBnnLiacovMnePD6586QlRj2qvwudbn8/356'
+                    },
+                    {
+                        name: '原生JS扫雷游戏实战开发【渡一教育】',
+                        free: true,
+                        playback: false,
+                        price: 0,
+                        buyNumber: 0,
+                        enrollment: 631,
+                        poster: 'https://10.url.cn/qqcourse_logo_ng/ajNVdqHZLLDaTljUSVGk2eqS1MCT3DwDqxgs7KhfMf3411SXQkRvmiaicIuz47ydO27zGPWK97wicw/356'
+                    },
+                    {
+                        name: '你不知道的Javascript【渡一教育】',
+                        free: true,
+                        playback: false,
+                        price: 0,
+                        buyNumber: 0,
+                        enrollment: 1696,
+                        poster: 'https://10.url.cn/qqcourse_logo_ng/ajNVdqHZLLCelo2lyibtrxDia7aq7tC0LE1Lcz2LVoDqhQy5tnOHicTzWhLuvPekL35rEmwTdgNuwI/356'
+                    }
+                ],
+            },
+            methods:{
+                getPrice(price) {
+                    console.log(price);
+                    this.price = price;
+                }        
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>动态组件</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+    <div ip="app">
+        <button>切换</button>
+        <cmp-one></cmp-one>
+        <cmp-two></cmp-two>
+    </div>
+
+    
+</body>
+
+    <script>
+        const cmpOne = {
+            template:`<div>组件1：<input type="value"></div>`
+        }
+        const cmpTwo = {
+            template:`<div>组件2：<input type="value"></div>`
+        }
+        const vm = new Vue({
+            el:"app",
+            components:{
+                cmpOne,
+                comTwo
+            },
+        })
+    
+    </script>
+</html>
