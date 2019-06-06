@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 思路:深拷贝
+        //先判断元素是用来拷贝的数据类型 
+        function checkType (type) {
+            return Object.prototype.toString.call(type).slice(8,-1);
+        }
+        function deepClone (target) {
+            let checkType = checkType(target),
+            
+            result = checkType === [] ? "[]" : checkType === {} ? "{}" : target;
+            Object.keys(target).forEach( item => {
+                let value = target[item];
+                if(value === "Object" || value === "Array") {
+                    result[item] = deepClone(item);
+                }else {
+                    result[item] = value;
+                }
+            })
+            return result;
+        }
+    </script>
+</body>
+</html>

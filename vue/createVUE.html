@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>创建VUE实例</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- <button @click="add">增加</button>
+        {{name}}
+        <button @click="reduce">减少</button> -->
+
+
+    </div>
+    <script>
+
+        
+        new Vue({
+            el:'#app',
+            data: {
+                name: 0,
+            },
+            methods: {
+                add() {
+                    this.name = this.name + 1;
+                },
+                reduce() {
+                    if(this.name == 0) {
+                        alert('不能小于0') 
+                        return
+                    };
+                    this.name = this.name - 1;
+                }
+            },
+        })
+        
+        
+    </script>
+</body>
+</html>

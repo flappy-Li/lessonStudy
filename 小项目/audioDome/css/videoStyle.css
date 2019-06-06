@@ -1,0 +1,162 @@
+@import "https://at.alicdn.com/t/font_774213_vywgvd0aj9k.css";
+
+.container {
+    height: 450px;
+    width: 600px;
+    margin: 0 auto;
+    background: rgb(0,0,0);
+    position: relative;
+    overflow: hidden;
+}
+.container .video_container {
+    height: 100%;
+    width: 100%;
+}
+/* 蒙层 */
+.container .model {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    cursor: pointer;
+}
+.container .model.pause {
+    background: rgba(0,0,0,0.5);
+}
+.container .model .iconfont {
+    color: #fff;
+}
+/* 图标放大动效 */
+.container .model .icon-bofang1,
+.container .model .icon-zanting1 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom:0;
+    right:0;
+    margin: auto;
+    font-size: 60px;
+    width: 60px;
+    height: 60px;
+    transition: 0.5s;
+    transform: scale(2);
+    opacity: 0;
+}
+/* 图标还原 */
+.container .model.pause .icon-bofang1{
+    transform: scale(1);
+    opacity: 1;
+}
+
+/* 时长 */
+.container .model .time {
+    font-size: 12px;
+}
+
+/* 工具栏 */
+.container .model .tools_bar {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, .5);
+    height: 45px;
+    width: 100%;
+    color:#fff;
+    line-height: 45px;
+    /* padding: 0 20px; */
+    box-sizing: border-box;
+    cursor: auto;
+}
+
+.container .model .tools_bar .left {
+    float: left;
+    margin-left: 20px;
+}
+
+.container .model .tools_bar .right {
+    float: right;
+    margin-right: 20px;
+}
+/* 进度条 */
+.container .model .tools_bar .progress_bar {
+    position: absolute;
+    top: 0;
+    height: 3px;
+    /* border-radius: 4px; */
+    width: 100%;
+    background: #fff;
+    cursor: pointer;
+}
+.container .model .tools_bar .progress_bar .bar_bg {
+    background: rgb(102, 240, 102);
+    width: 0;
+    position:absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+}
+.container .model .tools_bar .progress_bar .slider {
+    width: 15px;
+    height: 15px;
+    position: absolute;
+    border: 1px solid #ccc;
+    top: 50%;
+    left: 0px;
+    transform: translateY(-50%);
+    border-radius: 50%;
+    background: rgb(102, 240, 102);
+}
+
+/* 全屏 */
+.container .model .tools_bar .icon-quanping {
+    font-size: 24px;
+}
+/* 倍速 */
+.container .model .tools_bar .icon-weibiaoti-_huaban {
+    font-size: 20px;
+    width: 27px;
+    height:45px;
+    position: relative;
+}
+.container .model .tools_bar .icon-weibiaoti-_huaban:hover ul{
+    display: block;
+}
+.container .model .tools_bar .icon-weibiaoti-_huaban ul{
+    position: absolute;
+    bottom: 40px;
+    width: 50px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    left: -15px;
+    border-radius: 4px;
+    background: rgba(0, 0, 0, .5);
+    text-align: center;
+    font-size: 12px;
+    line-height: 3;
+    display: none;
+}
+.container .model .tools_bar .icon-weibiaoti-_huaban ul li:hover {
+    color: rgba(240, 174, 33, 0.555);
+    cursor: pointer;
+}
+.container .model .tools_bar .icon-weibiaoti-_huaban ul .active {
+    color: rgb(240, 174, 33);
+}
+/* 音量 */
+.container .model .tools_bar .icon-shengyin {
+    font-size: 22px;
+    width: 20px;
+    white-space: nowrap;
+    overflow: hidden;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+}
+.container .model .tools_bar .icon-shengyin input {
+    margin-left: 10px;
+}
+.container .model .tools_bar .icon-shengyin:hover {
+    width: 180px;
+}
