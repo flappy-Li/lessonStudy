@@ -145,17 +145,19 @@
     color: rgb(240, 174, 33);
 }
 /* 音量 */
-.container .model .tools_bar .icon-shengyin {
+.container .model .tools_bar .icon-shengyin,
+.container .model .tools_bar .icon-jingyin {
     font-size: 22px;
-    width: 20px;
+    width: 25px;
     white-space: nowrap;
     overflow: hidden;
     transition: 0.3s;
     display: flex;
     align-items: center;
 }
-.container .model .tools_bar .icon-shengyin input {
-    margin-left: 10px;
+.container .model .tools_bar .icon-shengyin input,
+.container .model .tools_bar .icon-jingyin input {
+    margin-left: 15px;
 }
 .container .model .tools_bar .icon-shengyin:hover {
     width: 180px;

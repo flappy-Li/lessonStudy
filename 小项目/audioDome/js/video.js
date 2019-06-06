@@ -20,6 +20,7 @@ let total, //视频总时长
     spanTotal = _$("#spanTotal"), //总时长
     volume = _$("#volume"),     //音量控制
     full = _$(".icon-quanping"), //全屏
+    mute = _$(".icon-shengyin"), //静音
     toolsPLay = _$(".tools_bar .icon-bofang"), //工具栏播放按钮
     lis = document.querySelectorAll(".icon-weibiaoti-_huaban li[data-value]"); //选中所有倍速播放的li
 
@@ -43,9 +44,27 @@ video.ondurationchange = function () {
     total = video.duration;
     setTime();
 }
+//静音时间
+mute.onclick = function() {
+    if(volume.value == 0) {
+        mute.classList.remove('icon-jingyin');
+        mute.classList.add('icon-shengyin');
+        video.volume = 50 / 100; // 音量的范围在[0, 1]
+        volume.value = 50; 
+    }else {
+        mute.classList.remove('icon-shengyin');
+        mute.classList.add('icon-jingyin');
+       video.volume = volume.value = 0;
+    }
+}
 //音量事件
 volume.onchange = function() {
     setVolume()
+}
+//阻止音量大小事件冒泡
+volume.onclick = function (e) {
+    var e = window.event || e.event;
+    e.stopPropagation(); //阻止事件冒泡
 }
 
 //全屏事件(未做浏览器兼容处理) 
