@@ -31,7 +31,10 @@
         /* @params 思路:继承
          *  创建一个中间层,有中间层进行继承
         */
-        
+        function extend (origin, target) {
+            target.prototype = origin.prototype
+        }
+            
 
     </script>
 </body>
