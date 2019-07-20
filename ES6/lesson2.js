@@ -25,7 +25,7 @@
 *                   test(1,2,3) => 收集作用
 *       作用：简化代码量，提升开发效率
 *       ES6/ES7 ES6 => 可以处理数组
-*               ES3 => 增加处理对象
+*               ES7 => 增加处理对象
 *       JSON.parse(JSON.stringify(function(){}); 浅克隆
 *   4. Object.assign({}, obj1, obj2) => 实现浅克隆
 *        ES7 => ...{}结构对象 可以实现浅克隆

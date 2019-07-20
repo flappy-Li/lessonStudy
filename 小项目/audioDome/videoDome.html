@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/videoStyle.css">
+    <!-- <link rel="stylesheet" href="js/index.js"> -->
+</head>
+
+<body>
+    <div class="container">
+        <video src="video/电影.mkv" class="video_container"></video>
+        <!-- 蒙层 -->
+        <div class="model pause">
+            <!-- 播放图标 -->
+            <i class="iconfont icon-bofang1"></i>
+            <!-- 工具条 -->
+            <div class="tools_bar">
+                <!-- 进度条 -->
+                <div class="progress_bar">
+                    <!-- 底部条 -->
+                    <div class="bar_bg"></div>
+                    <!-- 滑块 -->
+                    <div class="slider"></div>
+                </div>
+                <i class="iconfont icon-bofang left"></i>
+                <!-- 时长 -->
+                <div class=" left time">
+                    <span id="spanDur"></span>
+                    /
+                    <span id="spanTotal"></span>
+                </div>
+                <!-- 全屏 -->
+                <i class="iconfont icon-quanping right"></i>
+                <!-- 加速 -->
+                <div class="set_up iconfont icon-weibiaoti-_huaban right">
+                    <ul>
+                        <li class="active" data-value="2">2</li>
+                        <li data-value="1.75">1.75</li>
+                        <li data-value="1.5">1.5</li>
+                        <li data-value="1">1</li>
+                        <li data-value="0.75">0.75</li>
+                        <li data-value="0.5">0.5</li>
+                    </ul>
+                </div>
+                <!-- 音量 -->
+                <div class="iconfont icon-shengyin right">
+                    <input type="range" id="volume" max="100" min="0">
+                </div>
+            </div> 
+        </div>
+    </div>
+    <script src="js/video.js"></script>
+</body>
+</html>

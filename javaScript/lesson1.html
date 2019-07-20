@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /* @param 思路:深拷贝
+         * 先判断元素是用来拷贝的数据类型
+        */
+        function checkType (type) {
+            return Object.prototype.toString.call(type).slice(8,-1);
+        }
+        function deepClone (target) {
+            let checkType = checkType(target),
+            result = checkType === [] ? "[]" : checkType === {} ? "{}" : target;
+            Object.keys(target).forEach( item => {
+                let value = target[item];
+                //判断还有没有深层数组或对象, 进行递归遍历
+                if(value === "Object" || value === "Array") {
+                    result[item] = deepClone(item);
+                }else {
+                    result[item] = value;
+                }
+            })
+            return result;
+        }
+        /* @params 思路:继承
+         *  创建一个中间层,有中间层进行继承
+        */
+        function extend (origin, target) {
+            target.prototype = origin.prototype
+        }
+            
+
+    </script>
+</body>
+</html>

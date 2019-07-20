@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title> document </title>
+    </head>
+    <body>
+        <div id="APP">
+            <p>
+                姓名:{{name}}
+            </p>
+            <p>
+                年龄:{{age}}
+            </p>
+        </div>
+    </body>
+    <script src="dome.js"></script>
+    <script>
+        var vue = new MVVM( 'APP', {
+            name:'张孝捷',
+            age:'18'
+        })
+    </script>
+</html>
