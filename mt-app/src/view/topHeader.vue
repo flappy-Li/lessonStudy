@@ -1,10 +1,10 @@
 <template>
-    <div class="header">
-        <el-row>
-            <search-bar/>
-        </el-row>
+    <div class="m-header">
         <el-row>
             <top-bar/>
+        </el-row>
+        <el-row>
+            <search-bar/>
         </el-row>
     </div>
 </template>
@@ -14,7 +14,7 @@ import topBar from '@/components/header/topBar.vue'
 export default {
     data() {
         return {
-            
+           
         }
     },
     components:{
@@ -23,10 +23,8 @@ export default {
     }
 }
 </script>
-<style>
-    .header {
-
-    }
-
-
+<style lang='scss'>
+    @import "@/assets/css/public/header/topBar.scss";
+    @import '@/assets/css/public/header/search.scss';
+    @import '@/assets/css/public/header/index.scss';
 </style>
