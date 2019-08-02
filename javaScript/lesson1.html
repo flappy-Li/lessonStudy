@@ -28,10 +28,86 @@
             })
             return result;
         }
+
+
+        /**
+         *  @param {[type]}  对象处理类型
+        */
+        const isType = (obj, type) => {
+            if( typeof obj != 'Object') return false;
+            const typeString = Object.prototype.toString.call(obj);
+            let temp;
+            switch (type) {
+                case 'Array':
+                    temp = typeString === '[object Array]';
+                    break;
+                case 'Date':
+                    temp = typeString === '[object Date]';
+                case 'RegExp':
+                    temp = typeString === '[object RegExp]';
+                default:
+                    temp = false;
+                return temp;
+            }
+        }
+        //处理正则对象 
+        const getRegExp = re => {
+            let flags = '';
+            if(re.global) flags += 'g';
+            if(re.ignoreCase) flags += 'i';
+            if(re.multiline) flags += 'm';
+            return flags;
+        }
+        /**
+         *  @param {[type]} parent object 需要进行克隆的对象
+         *  @param {[type]}   深克隆后的对象
+        */
+        export const clone = parent => {
+            //定义两个储存循环引用的数组
+            const parents = [];
+            const children = [];
+            
+            const _clone = parent => {
+                if(parent === null) return null;
+                if(typeof parent !== 'object') return parent;
+                let child, proto;
+                //对数组进行特殊处理
+                if(isType( parent, 'Array')) {
+                    child = [];
+                }else if( isType(parent, 'RegExp')) {
+                    //对正则进行特殊处理
+                    child = new RegExp(parent.source, getRexExp(parent));
+                }else if( isTyp(parent, 'Date')) {
+                    //对时间对象进行特殊处理
+                    child = new Date(parent.getTime());
+                }else {
+                    //c处理对象原型
+                    proto = Object.getPrototypeOf(parent);
+                    //利用object.create()切断原型链
+                    child = object.create(proto);
+                }
+            }
+            //处理循环引用
+            const index = parents.indexOf(parent);
+            //如果父数组存在本对象,说明之前被引用过,直接返回此对象;
+            if( index != -1) return children[index];
+            parents.push(parent);
+            children.push(child);
+
+            //递归
+            for(let prop in parent) {
+                child[prop] = _clone(parent[prop]);
+                return child;
+            }
+            return _clone(parent);
+        }
+
+
+
         /* @params 思路:继承
          *  创建一个中间层,有中间层进行继承
         */
-        function extend (origin, target) {
+        const extend = (origin, target) => {
             target.prototype = origin.prototype
         }
             
