@@ -9,6 +9,6 @@
  * 
  * 2.  module.exports, requrie 为什么不声明就能用?
  *     nodeJs的模块是运行在一个函数里的, 
- *   module, exports, requrie都会被当成参数传到那个函数里去
+ *    module, exports, requrie都会被当成参数传到那个函数里去,最后这个函数会返回 module.exports
  * 
  */
