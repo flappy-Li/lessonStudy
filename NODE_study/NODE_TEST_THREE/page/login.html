@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <input type="text" id="stu_num" placeholder="学号">
+    <input type="password" id="password" placeholder="密码">
+    <input type="submit" onclick="login()">
+    <script>
+        function login() {
+            var stu_num = document.getElementById('stu_num').value;
+            var pwd = document.getElementById('password').value;
+            var stu_name = "stuNum=" + stu_num + "&password=" + pwd;
+
+            xmlHttp = new XMLHttpRequest();
+            xmlHttp.open("POST", "/login", true);
+            xmlHttp.send(stu_name);
+            xmlHttp.onreadystatechange = function () {
+                if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+                    if (xmlHttp.responseText == 'OK') {
+                        alert('登陆成功');
+                        location.href = '/main.html'
+                    } else {
+                        alert('失败');
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>

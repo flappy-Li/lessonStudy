@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+
+<body>
+    <input type="text" id="stu_num" value="stu_num">
+    <input type="text" id="password" value="password">
+    <input type="submit" onclick="login()">
+    <script>
+        function login () {
+            var stu_num = document.getElementById('#stu_num');
+            var pwd = document.getElementById('#password');
+            var stu_name = "stu_num=" + stu_num + "&password=" + pwd;
+
+            
+            xmlHttp = new XMLHttpRequest();
+            xmlHttp.open("GET", "/login?" + stu_name, true);
+            xmlHttp.send(null);
+        
+            xmlHttp.onreadystatechange = function () {
+                if(xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+                    if(xmlHttp.responseText == 'OK') {
+                        alert('登陆成功');
+                    }else {
+                        alert('失败');
+                    }
+                }
+             }
+        }
+    </script>
+</body>
+
+</html>
